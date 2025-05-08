@@ -1,23 +1,17 @@
 
 
-const menuList = document.getElementById("menuList");
-const menuIcon = document.getElementById("menuIcon");
-const menuToggle = document.getElementById("menuToggle"); 
+const menuBtn = document.getElementById("menuToggle");
+const navLinks = document.getElementById("menuList");
+const menuBtnIcon = document.getElementById("menuIcon");
 
-// Ensure menu is hidden initially
-menuList.style.maxHeight = "0px";
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
 
-menuToggle.addEventListener("click", () => {
-  const isOpen = menuList.style.maxHeight !== "0px";
-
-  if (isOpen) {
-    menuList.style.maxHeight = "0px";
-    menuIcon.classList.remove("ri-close-line");
-    menuIcon.classList.add("ri-menu-3-line");
-  } else {
-    menuList.style.maxHeight = menuList.scrollHeight + "px";
-    menuIcon.classList.remove("ri-menu-3-line");
-    menuIcon.classList.add("ri-close-line");
-  }
+  const isOpen = navLinks.classList.contains("open");
+  menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-3-line");
 });
 
+navLinks.addEventListener("click", () => {
+  navLinks.classList.remove("open");
+  menuBtnIcon.setAttribute("class", "ri-menu-3-line");
+});
